@@ -1,10 +1,10 @@
 class Lengths(object):
     @staticmethod
-    def angstrem_to_cm(angs):
+    def angstrom_to_cm(angs):
         return angs * 10e-8
 
     @staticmethod
-    def cm_to_angstrem(cm):
+    def cm_to_angstrom(cm):
         return cm * 10e8
 
     @staticmethod
@@ -25,3 +25,11 @@ class Volumes(object):
     @staticmethod
     def cm_to_m(cm3):
         return cm3 * 10e-6
+
+    @staticmethod
+    def cm_to_angstrom(cm3):
+        return cm3 * 10e24
+
+    @staticmethod
+    def angstrom_cm_to(ang):
+        return ang * 10e-24
