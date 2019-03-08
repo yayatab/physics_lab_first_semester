@@ -1,10 +1,6 @@
 import math
-from math import sqrt, pi
-
-G_THEO_CM = 981.3
-G_THEO_CM_D = 10
-G_THEO = G_THEO_CM / 100
-G_THEO_D = G_THEO_CM_D / 100
+from math import sqrt
+from constants import *
 
 
 def calc_Standard_deviation(ls):

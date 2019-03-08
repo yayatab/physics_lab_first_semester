@@ -1,0 +1,7 @@
+from math import pi
+
+AVOGADRO_NUMBER = 6.022140857e23
+G_THEO_CM = 981.3
+G_THEO_CM_D = 10
+G_THEO = G_THEO_CM / 100
+G_THEO_D = G_THEO_CM_D / 100
