@@ -33,3 +33,7 @@ class Volumes(object):
     @staticmethod
     def angstrom_cm_to(ang):
         return ang * 10e-24
+
+    @staticmethod
+    def liter_to_m(l):
+        return l * 0.001

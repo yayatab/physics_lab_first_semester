@@ -1,2 +1,5 @@
+import general_tools.convertions
+import general_tools.general_math
 import general_tools.lab
+import general_tools.statistics
 import general_tools.vectors
