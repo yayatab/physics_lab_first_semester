@@ -9,5 +9,5 @@ def n_over_k(n, k):
     return factor(n) / (factor(k) * factor(n - k))
 
 
-def npr(n, k):
+def binomial_cooeficiant(n, k):
     return factor(n) / (factor(n - k))

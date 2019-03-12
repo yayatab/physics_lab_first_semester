@@ -19,7 +19,7 @@ def expected_value_weights(array, weights):
 def Binomial_distribution(n, p, r):
     # TODO use mathematis.
     # ToDO call npr as Binomial coefficient.
-    return general_math.npr(n, r) * p ** r * (1 - p) ** (n - r)
+    return general_math.binomial_cooeficiant(n, r) * p ** r * (1 - p) ** (n - r)
 
 
 def combination(n, k):
@@ -27,4 +27,4 @@ def combination(n, k):
 
 
 def interchangeability(n, k):
-    return general_math.npr(n, k)
+    return general_math.binomial_cooeficiant(n, k)
