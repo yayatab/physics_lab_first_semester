@@ -17,8 +17,6 @@ def expected_value_weights(array, weights):
 
 
 def Binomial_distribution(n, p, r):
-    # TODO use mathematis.
-    # ToDO call npr as Binomial coefficient.
     return general_math.binomial_cooeficiant(n, r) * p ** r * (1 - p) ** (n - r)
 
 
