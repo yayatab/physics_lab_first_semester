@@ -14,7 +14,7 @@ def expected_value(array):
 
 
 def expected_value_weights(array, weights):
-    return numpy.average(array, weights)
+    return sum([x * y for x, y in zip(array, weights)])
 
 
 def Binomial_distribution(n, p, r):
@@ -49,3 +49,12 @@ def stirlings_approx_error(n):
     strling = stirlings_approximation(n)
     dx = abs(strling - fact) / fact
     return fact, strling, dx
+
+
+def variance_for_Discrete(array, weights, mean_val):
+    return sum([y * (x * mean_val) ** 2 for x, y in zip(array, weights)])
+
+
+def variance_for_Discrete_with_squere(array, weights):
+    e_squre = expected_value_weights([l ** 2 for l in array], weights)
+    return e_squre - expected_value_weights(array, weights)
