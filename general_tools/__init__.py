@@ -1,5 +1,5 @@
-import general_tools.convertions
-import general_tools.general_math
-import general_tools.lab
-import general_tools.statistics
-import general_tools.vectors
+from general_tools.convertions import *
+from general_tools.general_math import *
+from general_tools.lab import *
+from general_tools.statistics import *
+from general_tools.vectors import *
