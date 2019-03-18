@@ -37,3 +37,23 @@ class Volumes(object):
     @staticmethod
     def liter_to_m(l):
         return l * 0.001
+
+
+class Areas(object):
+    @staticmethod
+    def cm_to_m(cm):
+        return cm * 0.0001
+
+
+class Pressures(object):
+    @staticmethod
+    def atm_to_pa(atm):
+        return atm * 101325
+
+    @staticmethod
+    def pa_to_mmHg(pa):
+        return pa * 0.007501
+
+    @staticmethod
+    def mmHg_to_pa(mmHg):
+        return mmHg * 133.322365
