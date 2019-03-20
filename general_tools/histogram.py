@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from collections import Counter
-import pandas as pd
+import numpy as np
 
 
 def create_histogram(sequence) -> dict:
@@ -22,7 +22,7 @@ def ascii_histogram(seq) -> None:
 
 
 def generate_histogram_auto(sequence, file_path='./figure.jpeg', xlabel="", ylabel="", title="", colour='#0504aa',
-                            alpha=0.7, rwidth=0.5, bins='auto'):
+                            alpha=0.7, rwidth=0.5, bins='auto', normalize=False):
     # An "interface" to matplotlib.axes.Axes.hist() method
     n, bins, patches = plt.hist(x=sequence, bins=bins, color=colour,
                                 alpha=alpha, rwidth=rwidth, )
@@ -33,6 +33,8 @@ def generate_histogram_auto(sequence, file_path='./figure.jpeg', xlabel="", ylab
     plt.text(23, 45, r'$\mu=15, b=3$')
     # maxfreq = n.max()
     # Set a clean upper y-axis limit.
-    # plt.ylim(ymax=np.ceil(maxfreq / 10) * 10 if maxfreq % 10 else maxfreq + 10)
+    maxfreq = n.max()
+    if normalize:
+        plt.ylim(ymax=np.ceil(maxfreq / 10) * 10 if maxfreq % 10 else maxfreq + 10)
     plt.savefig(file_path)
 
