@@ -3,6 +3,8 @@ from math import sqrt
 from constants import *
 
 
+# todo calss of : name = a +- b with funcitons for a and b.
+
 def calc_Standard_deviation(ls):
     """
     cakcs Standard deviation of ls.
@@ -43,6 +45,14 @@ def n_sigma_str(x1, dx1, ydy_str):
     ydy_str.replace(' ', '')
     x2, dx2 = tuple([float(x) for x in ydy_str.split('±')])
     return n_sigma(x1, dx1, x2, dx2)
+
+
+def n_sigma_str_str(xdx: str, ydy: str):
+    ydy = ydy.replace(' ', '')
+    xdx = xdx.replace(' ', '')
+    x, dx = tuple([float(a) for a in xdx.split('±')])
+    y, dy = tuple([float(a) for a in ydy.split('±')])
+    return n_sigma(x, dx, y, dy)
 
 
 def n_sigma(x1, dx1, x2, dx2):
