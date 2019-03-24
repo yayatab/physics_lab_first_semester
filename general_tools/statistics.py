@@ -58,3 +58,7 @@ def variance_for_Discrete(array, weights, mean_val):
 def variance_for_Discrete_with_squere(array, weights):
     e_squre = expected_value_weights([l ** 2 for l in array], weights)
     return e_squre - expected_value_weights(array, weights)
+
+
+def geometrical_probability(n, p):
+    return (1 - p ** (n - 1)) * p
