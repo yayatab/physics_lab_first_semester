@@ -37,4 +37,10 @@ def generate_histogram_auto(sequence, file_path='./figure.jpeg', xlabel="", ylab
     if normalize:
         plt.ylim(ymax=np.ceil(maxfreq / 10) * 10 if maxfreq % 10 else maxfreq + 10)
     plt.savefig(file_path)
+    plt.plot()
+    plt.show()
 
+
+if __name__ == '__main__':
+    from random import random
+    generate_histogram_auto([random() for i in range(1000)], bins=5)

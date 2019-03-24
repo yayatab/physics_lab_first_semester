@@ -8,3 +8,15 @@ def generate_phase_shift(A, B):
 
 def phase_from_dt(omega, dt):
     return omega * dt
+
+
+def vr_vo(R, omega, L, c):
+    return R / sqrt(R ** 2 + (omega * L - 1 / (omega * c)))
+
+
+def get_omega(L, C):
+    return 1 / sqrt(L * C)
+
+
+def get_delta_omega(R, L=23.91e-3):
+    return R / L
