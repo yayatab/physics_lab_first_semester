@@ -22,25 +22,22 @@ def ascii_histogram(seq) -> None:
 
 
 def generate_histogram_auto(sequence, file_path='./figure.jpeg', xlabel="", ylabel="", title="", colour='#0504aa',
-                            alpha=0.7, rwidth=0.5, bins='auto', normalize=False):
+                            alpha=0.7, rwidth=0.5, bins='auto', normalize=False, plot_args={}):
     # An "interface" to matplotlib.axes.Axes.hist() method
-    n, bins, patches = plt.hist(x=sequence, bins=bins, color=colour,
-                                alpha=alpha, rwidth=rwidth, )
+    n, bins, patches = plt.hist(x=sequence, bins=bins, color=colour, alpha=alpha, rwidth=rwidth, )
     plt.grid(axis='y', alpha=0.75)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.title(title)
-    plt.text(23, 45, r'$\mu=15, b=3$')
-    # maxfreq = n.max()
     # Set a clean upper y-axis limit.
-    maxfreq = n.max()
     if normalize:
+        maxfreq = n.max()
         plt.ylim(ymax=np.ceil(maxfreq / 10) * 10 if maxfreq % 10 else maxfreq + 10)
     plt.savefig(file_path)
-    plt.plot()
+    plt.plot(**plot_args)
     plt.show()
 
 
 if __name__ == '__main__':
     from random import random
-    generate_histogram_auto([random() for i in range(1000)], bins=5)
+    generate_histogram_auto([random() for i in range(1000)], bins=30)
