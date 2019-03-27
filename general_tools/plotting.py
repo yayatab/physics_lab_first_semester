@@ -10,6 +10,15 @@ def _plot_grid(grid_kwargs):
     plt.axvline(color='black')
 
 
+def _plot_several_lines(funcs, x):
+    lines = []
+    for func in funcs:
+        yfunc = [func(i) for i in x]
+        lines.append(yfunc)
+    for y, func in zip(lines, funcs):
+        plt.plot(x, y, label=func.__name__)
+
+
 def plot_a_function(func, begin: float = 0, end: float = 1e4, step: float = 0.1, grid_kwargs={}):
     return plot_functions([func], begin, end, step, grid_kwargs)
 
@@ -32,14 +41,28 @@ def plot_functions(funcs, begin: float = 0, end: float = 1e4, step: float = 0.1,
     :rtype:
     """
     x = np.arange(begin, end, step)
-    lines = []
-    for f in funcs:
-        arr = []
-        for i in x:
-            arr.append(f(i))
-        lines.append(arr)
-    for y, func in zip(lines, funcs):
-        plt.plot(x, y, label=func.__name__)
+    _plot_several_lines(funcs, x)
+    _plot_grid(grid_kwargs)
+    plt.legend()
+    plt.show()
+    return plt
+
+
+def plot_function_and_data(func, xdata, ydata, step: float = 0.1, grid_kwargs={}):
+    x = np.arange(min(xdata), max(xdata), step)
+    yfunc = [func(i) for i in x]
+    plt.plot(x, yfunc, label=func.__name__)
+    plt.plot(xdata, ydata, '*', label='data')
+    _plot_grid(grid_kwargs)
+    plt.legend()
+    plt.show()
+    return plt
+
+
+def plot_functions_and_data(funcs, xdata, ydata, step: float = 0.1, grid_kwargs={}):
+    x = np.arange(min(xdata), max(xdata), step)
+    _plot_several_lines(funcs, x)
+    plt.plot(xdata, ydata, '*', label='data')
     _plot_grid(grid_kwargs)
     plt.legend()
     plt.show()
@@ -52,11 +75,16 @@ if __name__ == '__main__':
 
 
     def x_third(x):
-        return x ** 4
+        return x ** 3
 
 
-    plot_a_function(lambda x: general_math.exp(x), begin=-90, end=90, step=0.1,
+    plot_a_function(lambda x: general_math.exp(x), begin=-2, end=3, step=0.01,
                     grid_kwargs={'color': 'r', 'linestyle': '-', 'linewidth': 0.2})
 
     plot_functions([x_third, x_squre], begin=-0.9, end=0.9, step=0.01,
                    grid_kwargs={'color': 'r', 'linestyle': '-', 'linewidth': 0.2})
+
+    x, y = [1, 2, 3, 4, 5, 6, 7, 8, 9], [10, 20, 30, 40, 50, 60, 70, 80, 90]
+    plot_function_and_data(x_third, x, y, step=0.01, grid_kwargs={'color': 'r', 'linestyle': '-', 'linewidth': 0.2})
+    plot_functions_and_data([x_third, x_squre], x, y, step=0.01,
+                            grid_kwargs={'color': 'r', 'linestyle': '-', 'linewidth': 0.2})
