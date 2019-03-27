@@ -1,4 +1,5 @@
 from math import factorial as factor
+from math import exp
 
 
 def root(x, n=2):

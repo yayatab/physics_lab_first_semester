@@ -15,6 +15,10 @@ class Lengths(object):
     def cm_to_m(cm=1):
         return cm / 100
 
+    @staticmethod
+    def km_to_m(km=1):
+        return km * 1000
+
 
 class Volumes(object):
 

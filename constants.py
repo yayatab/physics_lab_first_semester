@@ -9,7 +9,8 @@ G_THEO_CM_D = 10
 G_THEO = G_THEO_CM / 100
 G_THEO_D = G_THEO_CM_D / 100
 EPSILON_0 = 8.854187817e-12
-EARTH_RADIUS = convertions.Length.km_to_m(6371)
+EARTH_RADIUS = convertions.Lengths.km_to_m(6371)
+
 
 def find_constant(name=None) -> dict:
     """
@@ -28,7 +29,7 @@ def find_constant(name=None) -> dict:
         ret = {}
         for key in res:
             ret.update({key: [con.value(key), con.unit(key)]})
-    return ret
+        return ret
 
 
 def get_units(something: str):
