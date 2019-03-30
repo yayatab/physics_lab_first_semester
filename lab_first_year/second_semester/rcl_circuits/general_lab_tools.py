@@ -20,3 +20,8 @@ def get_omega(L, C):
 
 def get_delta_omega(R, L=23.91e-3):
     return R / L
+
+
+def print_asins(A, B):
+    for r in calc_asin_on_lists(A, B):
+        print(r)

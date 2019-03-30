@@ -19,6 +19,10 @@ def _plot_several_lines(funcs, x):
         plt.plot(x, y, label=func.__name__)
 
 
+def plot_data(xdata, ydata):
+    plt.plot(xdata, ydata, '*', label='data')
+
+
 def plot_a_function(func, begin: float = 0, end: float = 1e4, step: float = 0.1, grid_kwargs={}):
     return plot_functions([func], begin, end, step, grid_kwargs)
 
@@ -52,7 +56,7 @@ def plot_function_and_data(func, xdata, ydata, step: float = 0.1, grid_kwargs={}
     x = np.arange(min(xdata), max(xdata), step)
     yfunc = [func(i) for i in x]
     plt.plot(x, yfunc, label=func.__name__)
-    plt.plot(xdata, ydata, '*', label='data')
+    plot_data(xdata, ydata)
     _plot_grid(grid_kwargs)
     plt.legend()
     plt.show()
@@ -62,7 +66,7 @@ def plot_function_and_data(func, xdata, ydata, step: float = 0.1, grid_kwargs={}
 def plot_functions_and_data(funcs, xdata, ydata, step: float = 0.1, grid_kwargs={}):
     x = np.arange(min(xdata), max(xdata), step)
     _plot_several_lines(funcs, x)
-    plt.plot(xdata, ydata, '*', label='data')
+    plot_data(xdata, ydata)
     _plot_grid(grid_kwargs)
     plt.legend()
     plt.show()
