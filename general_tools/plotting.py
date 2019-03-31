@@ -53,10 +53,13 @@ def plot_functions(funcs, begin: float = 0, end: float = 1e4, step: float = 0.1,
 
 
 def plot_function_and_data(func, xdata, ydata, step: float = 0.1, grid_kwargs={}):
-    x = np.arange(min(xdata), max(xdata), step)
-    yfunc = [func(i) for i in x]
-    plt.plot(x, yfunc, label=func.__name__)
     plot_data(xdata, ydata)
+    x = np.arange(min(xdata), max(xdata), step)
+    if isinstance(func, list):
+        _plot_several_lines(func, x)
+    else:
+        yfunc = [func(i) for i in x]
+        plt.plot(x, yfunc, label=func.__name__)
     _plot_grid(grid_kwargs)
     plt.legend()
     plt.show()
