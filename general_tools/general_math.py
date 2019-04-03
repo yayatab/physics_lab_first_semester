@@ -35,3 +35,7 @@ def round_to(x, d):
     :return: the rounded number
     """
     return round(x, d - int(floor(log10(abs(x)))))
+
+
+def average_of_list(l: list) -> float:
+    return sum(l) / len(l)

@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import math
 from general_tools import general_math
 from scipy import stats as sci_stats
@@ -11,7 +11,7 @@ def mean_value(*args):
 
 
 def expected_value(array):
-    return numpy.mean(array)
+    return np.mean(array)
 
 
 def expected_value_weights(array, weights):
@@ -63,3 +63,12 @@ def variance_for_Discrete_with_squere(array, weights):
 
 def geometrical_probability(n, p):
     return (1 - p ** (n - 1)) * p
+
+
+def genereate_uniform_random(n=1000):
+    return [np.random.uniform() for _ in range(n)]
+
+
+def standard_diviation(l):
+    avg = general_math.average_of_list(l)
+    return general_math.sqrt((1/len(l)) * sum((x - avg) ** 2 for x in l))
