@@ -1,7 +1,7 @@
 from math import pi
 from scipy import constants as con
 from scipy.constants import find as fnd
-from general_tools import convertions
+from general_tools.convertions import Lengths
 
 AVOGADRO_NUMBER = 6.022140857e23
 G_THEO_CM = 981.3
@@ -9,7 +9,7 @@ G_THEO_CM_D = 10
 G_THEO = G_THEO_CM / 100
 G_THEO_D = G_THEO_CM_D / 100
 EPSILON_0 = 8.854187817e-12
-EARTH_RADIUS = convertions.Lengths.km_to_m(6371)
+EARTH_RADIUS = 6_371_000
 
 
 def find_constant(name=None) -> dict:

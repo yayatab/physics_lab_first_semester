@@ -1,6 +1,7 @@
 import math
 from math import sqrt
-from constants import *
+# from constants import *
+from constants import G_THEO_CM, G_THEO_CM_D
 
 
 # todo calss of : name = a +- b with funcitons for a and b.

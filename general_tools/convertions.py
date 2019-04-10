@@ -65,3 +65,13 @@ class Pressures(object):
     @staticmethod
     def mmHg_to_pa(mmHg=1):
         return mmHg * 133.322365
+
+
+class Heat(object):
+    @staticmethod
+    def joul_to_cal(j):
+        return j * 0.239005736
+
+    @staticmethod
+    def cal_to_joul(cal):
+        return cal * 4.184
