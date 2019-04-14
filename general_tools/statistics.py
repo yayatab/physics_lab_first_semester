@@ -71,4 +71,12 @@ def genereate_uniform_random(n=1000):
 
 def standard_diviation(l):
     avg = general_math.average_of_list(l)
-    return general_math.sqrt((1/len(l)) * sum((x - avg) ** 2 for x in l))
+    return general_math.sqrt((1 / len(l)) * sum((x - avg) ** 2 for x in l))
+
+
+def covariance(a, b, normalization=False):
+    return np.cov(a, b, bias=normalization)
+
+
+def variance(a):
+    return np.var(a)
