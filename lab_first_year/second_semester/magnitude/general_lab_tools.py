@@ -11,6 +11,14 @@ OUR_OMEGA = 30
 Bearth = (0.039, 3.65E-04)
 
 
+def degrees_delta():
+    return (1 / 180) * math.pi / sqrt(12)
+
+
+def ruler_delta(resolution_meter=1e-3):
+    return resolution_meter / sqrt(12)
+
+
 def get_dipol_params(a1, da1, r, dr, r0, dr0):
     # todo chekc for correctnes
     tpi = 2 * pi
@@ -47,7 +55,7 @@ def f3(x):
 
 
 def f4(x):
-    return first_fit(x, 31e4 , a3=0.16)
+    return first_fit(x, 31e4, a3=0.16)
 
 
 def fit_fincs():

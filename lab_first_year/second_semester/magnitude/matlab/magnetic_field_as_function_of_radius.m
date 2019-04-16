@@ -1,5 +1,7 @@
 function f = magnetic_field_as_function_of_radius(x, a)
-%% y = a_1 \times 1/(x-a_2)^a_3 + a_4
+%% paste in word:
+%% y = a_1 \times 1/(x-a_2)^(a_3)  + a_4
+%% ;y≡B/μ_0 ,x≡radius,a_1≡m/(2π cos⁡(θ=0) )
 % y = B/ mue_0
 % x = r
 % a_1 == m/ 2pi * cos(theta =0 )

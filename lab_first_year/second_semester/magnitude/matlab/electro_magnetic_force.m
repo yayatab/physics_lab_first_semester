@@ -1,5 +1,5 @@
 function f = electro_magnetic_force(x, a)
-%% y = a_1 \times 1/(x-a_2)^a_3 + a_4
+%% y = a_1 \cdot sin(a_2 * x -a_e) + a_4
 % y = volt
 % x = time
 % a_1 == A,plitude
