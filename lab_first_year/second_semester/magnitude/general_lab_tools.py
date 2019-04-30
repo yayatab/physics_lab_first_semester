@@ -5,7 +5,7 @@ from general_tools.general_math import *
 from general_tools import plotting, convertions, electricity
 
 R = 13  # in cm
-ELECTRIC_FIELD_AT_R = 12  # todo calc
+ELECTRIC_FIELD_AT_R = 0.039, 0.00106453  # Mt
 OUR_OMEGA = 30
 
 Bearth = (0.039, 3.65E-04)
@@ -19,16 +19,12 @@ def ruler_delta(resolution_meter=1e-3):
     return resolution_meter / sqrt(12)
 
 
-def get_dipol_params(a1, da1, r, dr, r0, dr0):
-    # todo chekc for correctnes
-    tpi = 2 * pi
-    m_r = (tpi * a1, tpi * da1)
-    delta_r = (r - r0)
-    m_theta = m_r[0] * delta_r ** 3
-    d1 = da1 * delta_r ** 3
-    d2 = 3 * a1 * delta_r ** 2 * dr
-    delta_m_theta = tpi * sqrt(d1 ** 2 + 2 * d2 ** 2)
-    return m_r, (m_theta, delta_m_theta)
+def get_dipol_params_second_part(a1, da1, r, dr, r0, dr0):
+    rt = r - r0, sqrt(dr ** 2 + dr0 ** 2)
+    a1 = a1, da1
+    d1 = rt[0] ** 3 * a1[1]
+    d2 = 2 * rt[0] ** 2 * a1[0] * rt[1]
+    return a1[0] * 2 * math.pi * rt[0] ** 3, 2 * math.pi * math.sqrt(d1 ** 2 + d2 ** 2)
 
 
 def get_radial_magnetic_field(x, m=1, theta=0):

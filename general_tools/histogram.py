@@ -21,7 +21,7 @@ def ascii_histogram(seq) -> None:
         print('{0:5d} {1}'.format(k, '+' * counted[k]))
 
 
-def generate_histogram_auto(sequence, file_path='./figure.jpeg', xlabel="", ylabel="", title="", colour='#0504aa',
+def generate_histogram_auto(sequence, file_path='./figure.png', xlabel="", ylabel="", title="", colour='#0504aa',
                             alpha=0.7, rwidth=0.5, bins='auto', normalize=False, plot_args={}):
     # An "interface" to matplotlib.axes.Axes.hist() method
     n, bins, patches = plt.hist(x=sequence, bins=bins, color=colour, alpha=alpha, rwidth=rwidth, )

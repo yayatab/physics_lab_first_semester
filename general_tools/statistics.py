@@ -80,3 +80,43 @@ def covariance(a, b, normalization=False):
 
 def variance(a):
     return np.var(a)
+
+
+"""
+
+"""
+
+
+def chi2_single(x, y, dy, f):
+    return ((y - f(x)) / (dy)) ** 2
+
+
+def chi2(x_list, y_list, dy_list, func):
+    return sum(
+        chi2_single(x, y, dy, func)
+        for x, y, dy in zip(x_list, y_list, dy_list)
+    )
+
+
+def weighted_average(value, sigma):
+    return (
+            sum(v / (s ** 2) for v, s in zip(value, sigma))
+            /
+            sum(1 / (s ** 2) for s in sigma)
+    )
+
+def estimate_a(x, y, dy):
+    w = lambda z: weighted_average(z, dy)
+    return (
+            (w(x * y) - w(x) * w(y))
+            /
+            (w(x * x) - (w(x)) ** 2)
+    )
+
+
+def estimate_b(x, y, dy, a):
+    w = lambda z: weighted_average(z, dy)
+    return (
+            w(y) - a * w(x)
+    )
+
