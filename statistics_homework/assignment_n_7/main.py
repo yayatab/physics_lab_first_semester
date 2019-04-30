@@ -1,4 +1,3 @@
-import csv
 import numpy as np
 
 from general_tools.statistics import estimate_a, estimate_b, chi2
