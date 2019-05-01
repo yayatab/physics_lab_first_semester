@@ -107,3 +107,6 @@ venv.bak/
 .idea/
 #excel temp files
 ~$*
+#images
+.jpeg
+.png
