@@ -1,10 +1,52 @@
 import math
+import numpy as np
 from math import sqrt
 # from constants import *
 from constants import G_THEO_CM, G_THEO_CM_D
 
 
-# todo calss of : name = a +- b with funcitons for a and b.
+def _extract_values_from_string(string):
+    string.replace(' ', '')
+    return tuple([float(x) for x in string.split('±')])
+
+
+# todo calss add : __add__, __mult__, __div__ etc..
+# todo add to class n_sigma calc with another fitobject
+
+class FitObject(object):
+    def __init__(self, *args, **kwargs):
+        self.val = None
+        self.err = None
+        if len(args) == 0 and len(kwargs) == 0 and len(args) == 0:
+            raise IOError("WAT? insert a string, or val=XXX, err=XXX")
+        elif len(args) == 1:
+            self.val, self.err = _extract_values_from_string(args[0])
+        elif len(args) == 2:
+            self.val = float(args[0])
+            self.err = float(args[1])
+        elif self.val is None or self.err is None:
+            self.val = kwargs['val']
+            self.err = kwargs['err']
+        if self.val is None or self.err is None:
+            raise IOError("WAT?\ninsert a string OR\nval=XXX, err=XXX OR\n<val>,<err>")
+
+    def stat_err(self):
+        return self.err / self.val
+
+    def __repr__(self):
+        return "{a} ± {b}, {c}".format(a=self.val, b=self.err, c=self.stat_err())
+    
+    def __add__(self, other):
+        return self.val + other.val, sqrt(self.err + other.err)
+
+    def __sub__(self, other):
+        return self.val - other.val, sqrt(self.err + other.err)
+
+
+def randomize_a(init, n):
+    rand = np.random.randint(10, size=n)
+    return [init ** x for x in rand]
+
 
 def calc_Standard_deviation(ls):
     """
@@ -43,16 +85,13 @@ def n_sigma_str(x1, dx1, ydy_str):
     :type str:
     :return:
     """
-    ydy_str.replace(' ', '')
-    x2, dx2 = tuple([float(x) for x in ydy_str.split('±')])
+    dx2, x2 = _extract_values_from_string(ydy_str)
     return n_sigma(x1, dx1, x2, dx2)
 
 
 def n_sigma_str_str(xdx: str, ydy: str):
-    ydy = ydy.replace(' ', '')
-    xdx = xdx.replace(' ', '')
-    x, dx = tuple([float(a) for a in xdx.split('±')])
-    y, dy = tuple([float(a) for a in ydy.split('±')])
+    x, dx = _extract_values_from_string(xdx)
+    y, dy = _extract_values_from_string(ydy)
     return n_sigma(x, dx, y, dy)
 
 
@@ -76,6 +115,10 @@ def get_g(a1):
 
 def get_Io(a1, m, g, l):
     return a1 * m * g * l / 4 * math.pi ** 2
+
+
+def calc_sigma_div(*args):
+    return sqrt(sum(d ** 2 for d in args))
 
 
 """
