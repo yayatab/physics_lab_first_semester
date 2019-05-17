@@ -19,8 +19,11 @@ def _plot_several_lines(funcs, x):
         plt.plot(x, y, label=func.__name__)
 
 
-def plot_data(xdata, ydata):
-    plt.plot(xdata, ydata, '*', label='data')
+def plot_data(xdata, ydata, xerr=[], yerr=[], errbar_params={}):
+    if len(xerr) == 0 and len(yerr) == 0:
+        plt.plot(xdata, ydata, '*', label='data')
+        return
+    plt.errorbar(xdata, ydata, yerr=yerr, xerr=xerr, **errbar_params)
 
 
 def plot_a_function(func, begin: float = 0, end: float = 1e4, step: float = 0.1, grid_kwargs={}):
@@ -52,8 +55,8 @@ def plot_functions(funcs, begin: float = 0, end: float = 1e4, step: float = 0.1,
     return plt
 
 
-def plot_function_and_data(func, xdata, ydata, step: float = 0.1, grid_kwargs={}):
-    plot_data(xdata, ydata)
+def plot_function_and_data(func, xdata, ydata, step: float = 0.1, grid_kwargs={}, xerr=[], yerr=[], errbar_params={}):
+    plot_data(xdata, ydata, xerr=xerr, yerr=yerr, errbar_params=errbar_params)
     x = np.arange(min(xdata), max(xdata), step)
     if isinstance(func, list):
         _plot_several_lines(func, x)
@@ -66,10 +69,10 @@ def plot_function_and_data(func, xdata, ydata, step: float = 0.1, grid_kwargs={}
     return plt
 
 
-def plot_functions_and_data(funcs, xdata, ydata, step: float = 0.1, grid_kwargs={}):
+def plot_functions_and_data(funcs, xdata, ydata, step: float = 0.1, grid_kwargs={}, xerr=[], yerr=[], err_params={}):
     x = np.arange(min(xdata), max(xdata), step)
     _plot_several_lines(funcs, x)
-    plot_data(xdata, ydata)
+    plot_data(xdata, ydata, xerr, yerr, err_params)
     _plot_grid(grid_kwargs)
     plt.legend()
     plt.show()
