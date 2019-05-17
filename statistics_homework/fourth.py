@@ -1,5 +1,5 @@
 import general_tools.histogram
-from general_tools.statistics import *
+from general_tools.statistics.statistics import *
 from general_tools.plotting import *
 
 if __name__ == '__main__':

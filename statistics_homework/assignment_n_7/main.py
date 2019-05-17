@@ -1,6 +1,6 @@
 import numpy as np
 
-from general_tools.statistics import estimate_a, estimate_b, chi2
+from general_tools.statistics.statistics import estimate_a, estimate_b, chi2
 from general_tools.liniar_regression import estimate_coef, plot_regression_line, plot_residuals, plt
 
 
