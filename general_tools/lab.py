@@ -39,15 +39,34 @@ class FitObject(object):
             raise ValueError("WAT?")
         return n_sigma(self.val, self.err, o.val, o.err)
 
+    def mult(self, other):
+        return self.val * other.val, sqrt(other.val * self.err + self.val * other.err)
+
+    def div(self, other):
+        return self.val / other.val, sqrt(other.val * self.err + self.val * other.err)
+
     def __repr__(self):
         return "{a} ± {b}, {c}".format(a=self.val, b=self.err, c=round_to(self.stat_err(), 2))
 
     def __add__(self, other):
+        if type(other) != type(self):
+            return other + self.val
         return self.val + other.val, sqrt(self.err + other.err)
 
     def __sub__(self, other):
+        if type(other) != type(self):
+            return self.val - other
         return self.val - other.val, sqrt(self.err + other.err)
 
+    def __mul__(self, other):
+        if type(other) != type(self):
+            return self.val * other
+        return self.val * other.val, sqrt(other.val * self.err + self.val * other.err)
+
+    def __divmod__(self, other):
+        if type(other) != type(self):
+            return self.val * other
+        raise ValueError("use self.div")
 
 def randomize_a(init, n):
     rand = np.random.randint(10, size=n)
