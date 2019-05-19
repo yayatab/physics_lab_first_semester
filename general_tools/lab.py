@@ -3,6 +3,7 @@ import numpy as np
 from math import sqrt
 # from constants import *
 from constants import G_THEO_CM, G_THEO_CM_D
+from general_tools import round_to
 
 
 def _extract_values_from_string(string):
@@ -33,9 +34,14 @@ class FitObject(object):
     def stat_err(self):
         return self.err / self.val
 
+    def calc_n_sigma(self, o):
+        if type(o) != type(self):
+            raise ValueError("WAT?")
+        return n_sigma(self.val, self.err, o.val, o.err)
+
     def __repr__(self):
-        return "{a} ± {b}, {c}".format(a=self.val, b=self.err, c=self.stat_err())
-    
+        return "{a} ± {b}, {c}".format(a=self.val, b=self.err, c=round_to(self.stat_err(), 2))
+
     def __add__(self, other):
         return self.val + other.val, sqrt(self.err + other.err)
 
