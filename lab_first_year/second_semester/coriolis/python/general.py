@@ -1,5 +1,5 @@
 from general_tools.lab import FitObject, calc_sigma_div
-from math import sqrt
+from math import sqrt, acos
 
 
 def omega(t: FitObject):
@@ -47,3 +47,8 @@ class Parabol(object):
         d3 = (r * omega ** 2 * r.err) / val
         return FitObject(val, calc_sigma_div(d1, d2, d3))
 
+
+def get_alpha(dot1, dot2):
+    a1 = dot1.x.val * dot2.x.val + dot1.y.val * dot2.y.val
+    a2 = sqrt(dot1.x.val ** 2 + dot1.y.val ** 2) * sqrt(dot2.x.val ** 2 + dot2.y.val ** 2)
+    return acos(a1 / a2)
